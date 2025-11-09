@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import Root from "../Root/Root";
-import Bannar from "../components/Bannar";
+
+import HomeLayout from "../HomeLayout/HomeLayout";
 
 export const router = createBrowserRouter([
     {
@@ -11,7 +12,7 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 path: "/",
-                Component: Bannar,
+                Component: HomeLayout,
             }
         ]
 
