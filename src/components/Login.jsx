@@ -20,7 +20,7 @@ const Login = () => {
         </fieldset>
 
         {/* Google */}
-        <button className="btn bg-orange-100 hover:bg- text-black border-[#e5e5e5]">
+        <button className="btn bg-pink-200 hover:bg-pink-300 text-black border-[#e5e5e5]">
           <svg
             aria-label="Google logo"
             width="16"
