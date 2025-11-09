@@ -58,8 +58,8 @@ const Banner = () => {
             </h2>
             <p className="text-lg mb-6">{slides[current].description}</p>
             <Link
-              to="/services"
-              className="bg-blue-600 px-6 py-3 rounded-xl text-white hover:bg-blue-700 transition"
+              to="/service"
+              className="bg-green-600 px-6 py-3 font-semibold rounded-xl text-white hover:bg-green-700 transition"
             >
               Explore Services
             </Link>
