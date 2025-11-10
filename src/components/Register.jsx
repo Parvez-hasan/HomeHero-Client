@@ -1,32 +1,145 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const Register = () => {
+  const { createUser, setUser, updateUser, googleLogin } =
+    useContext(AuthContext);
+
+  const [nameError, setNameError] = useState("");
+  const [error, setError] = useState("");
+
+  const navigate = useNavigate();
+
+  const handleRegister = (e) => {
+    e.preventDefault();
+    const name = e.target.name.value;
+    const photo = e.target.photo.value;
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(name, photo, email, password);
+
+    // name  vali
+    if (name.length < 5) {
+      setNameError("You must provide at least 5 characters");
+      return;
+    } else {
+      setNameError("");
+    }
+
+    // password vali
+    if (!/(?=.*[A-Z])/.test(password)) {
+      return setError("Password must contain at least one uppercase letter.");
+    }
+    if (!/(?=.*[a-z])/.test(password)) {
+      return setError("Password must contain at least one lowercase letter.");
+    }
+    if (password.length < 6) {
+      return setError("Password must be at least 6 characters long.");
+    }
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+
+       // toast.success("✅ Account Created Successfully!", { autoClose: 1200 });
+        Swal.fire({
+          title: "✅ Account Created Successfully!",
+          icon: "success",
+          draggable: true,
+        });
+
+        updateUser({ displayName: name, photoURL: photo })
+          .then(() => {
+            setUser({ ...user, displayName: name, photoURL: photo });
+            navigate("/");
+          })
+          .catch((err) => {
+            const errm = err.message;
+            setError(errm);
+            setUser(user);
+          });
+      })
+      .catch((error) => {
+        setError(error.message);
+        toast.error(error.message);
+        toast.error("This didn't work.")
+      });
+  };
+
+  // google login
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then(() => {
+     //   toast.success("🎉 Logged in with Google!");
+        Swal.fire({
+          title: "🎉 Logged in with Google Successfully!",
+          icon: "success",
+          draggable: true,
+        });
+        navigate("/");
+      })
+      .catch((err) => setError(err.message));
+  };
+
   return (
     <div className="card bg-base-100 mx-auto max-w-sm shrink-0 shadow-2xl">
       <div className="card-body">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">
           Register now!
         </h1>
-        <fieldset className="fieldset">
+        <form onSubmit={handleRegister}>
+          <fieldset className="fieldset">
             {/* Name */}
-          <label className="label">Name</label>
-          <input type="text" className="input" required placeholder="Your name" /> 
-           {/* photo */}
-          <label className="label">Photo</label>
-          <input type="text" className="input" required placeholder="photo URL" />
-           {/* email */}
-          <label className="label">Email</label>
-          <input type="email" className="input" required placeholder="your email" />
-             {/* password */}
-          <label className="label">Password</label>
-          <input type="password" className="input" required placeholder="Password" />
-         
-          <button className="btn btn-neutral bg-green-600 hover:bg-green-700 mt-4">Register</button>
-        </fieldset>
-
+            <label className="label">Name</label>
+            <input
+              type="text"
+              name="name"
+              className="input"
+              required
+              placeholder="Your name"
+            />
+            {nameError && <p className="text-red-600">{nameError}</p>}
+            {/* photo */}
+            <label className="label">Photo</label>
+            <input
+              type="text"
+              name="photo"
+              className="input"
+              required
+              placeholder="photo URL"
+            />
+            {/* email */}
+            <label className="label">Email</label>
+            <input
+              type="email"
+              name="email"
+              className="input"
+              required
+              placeholder="your email"
+            />
+            {/* password */}
+            <label className="label">Password</label>
+            <input
+              type="password"
+              name="password"
+              className="input"
+              required
+              placeholder="Password"
+            />
+            {error && <p className="text-red-500">{error}</p>}
+            <button className="btn btn-neutral bg-green-600 hover:bg-green-700 mt-4">
+              Register
+            </button>
+          </fieldset>
+        </form>
         {/* Google */}
-        <button className="btn bg-pink-200 hover:bg-pink-300 text-black border-[#e5e5e5]">
+        <button
+          onClick={handleGoogleLogin}
+          className="btn bg-pink-200 hover:bg-pink-300 text-black border-[#e5e5e5]"
+        >
           <svg
             aria-label="Google logo"
             width="16"

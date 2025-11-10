@@ -1,26 +1,119 @@
-import React from "react";
-import { Link } from "react-router";
+import React, { useContext, useRef, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const Login = () => {
+
+  const { signIn, googleLogin } = useContext(AuthContext);
+  const [error, setError] = useState("");
+
+  const location = useLocation();
+  const navigate = useNavigate();
+  const emailRef = useRef();
+  console.log(location);
+
+
+   //const emailRef = useRef();
+ // const location = useLocation();
+
+ // for
+  const emailFromLogin = location.state?.email || "";
+
+  const handleResetPassword = (e) => {
+    e.preventDefault();
+    const email = emailRef.current.value;
+
+    if (!email) {
+      toast.error("⚠️ Please enter your email!");
+      return;
+    }
+
+    sendPasswordResetEmail(auth, email)
+      .then(() => {
+        toast.success("Password reset email sent! Please check your inbox.");
+
+       // window.open("https://mail.google.com/", "_blank");
+    
+      })
+      .catch((error) => {
+        toast.error(error.message);
+      });
+  };
+
+  //logout
+  const handleLogOut = (e) => {
+    e.preventDefault();
+
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    console.log(email, password);
+
+    signIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+         Swal.fire({
+                  title: "🎉 Logged Successfully!",
+                  icon: "success",
+                  draggable: true,
+                });
+        navigate("/");
+        e.target.reset();
+        navigate(`${location.state ? location.state.from : "/"}`);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  };
+  
+  // google login
+  const handleGoogleLogin = () => {
+    googleLogin()
+      .then((result) => {
+        console.log(result.user);
+        Swal.fire({
+                  title: "🎉 Logged Successfully!",
+                  icon: "success",
+                  draggable: true,
+                });
+        navigate(`${location.state ? location.state.from : "/"}`);
+      })
+      .catch((error) => {
+        setError(error.message);
+      });
+  };
+
   return (
     <div className="card bg-base-100 mx-auto max-w-sm shrink-0 shadow-2xl">
       <div className="card-body">
         <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold">
           Login now!
         </h1>
-        <fieldset className="fieldset">
+        <form onSubmit={handleLogOut} >
+          <fieldset className="fieldset">
           <label className="label">Email</label>
           <input type="email" className="input" placeholder="Email" />
           <label className="label">Password</label>
           <input type="password" className="input" placeholder="Password" />
           <div>
-            <a className="link link-hover">Forgot password?</a>
+            
+            {/* forget password */}
+            <a 
+             state={{ email: emailRef.current?.value || "" }}
+            className="link link-hover">Forgot password?</a>
           </div>
-          <button className="btn btn-neutral  bg-green-600 hover:bg-green-700 mt-4">Login</button>
+           {error && <p className="text-red-600">{error}</p>}
+          <button className="btn btn-neutral  bg-green-600 hover:bg-green-700 mt-4">
+            Login
+          </button>
         </fieldset>
+        </form>
 
         {/* Google */}
-        <button className="btn bg-pink-200 hover:bg-pink-300 text-black border-[#e5e5e5]">
+        <button 
+        onClick={handleGoogleLogin}
+        className="btn bg-pink-200 hover:bg-pink-300 text-black border-[#e5e5e5]">
           <svg
             aria-label="Google logo"
             width="16"
@@ -50,9 +143,13 @@ const Login = () => {
           </svg>
           Login with Google
         </button>
-         <p>Create An Account ? Please <Link className="text-blue-700 " to='/register'>Register</Link></p>
+        <p>
+          Create An Account ? Please{" "}
+          <Link className="text-blue-700 " to="/register">
+            Register
+          </Link>
+        </p>
       </div>
-   
     </div>
   );
 };

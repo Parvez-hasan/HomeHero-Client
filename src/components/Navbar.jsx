@@ -5,23 +5,23 @@ import { Link, NavLink } from "react-router";
 const Navbar = () => {
   const links = (
     <>
-      <li>
+      <li className="hover:text-pink-500 hover:font-bold">
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink to="/service">Services</NavLink>
+        <NavLink className="hover:text-pink-500 hover:font-bold" to="/service">Services</NavLink>
       </li>
       <li>
-        <NavLink to="/my-services">My Services</NavLink>
+        <NavLink className="hover:text-pink-500 hover:font-bold" to="/my-services">My Services</NavLink>
       </li>
       <li>
-        <NavLink to="/add-service">Add Service</NavLink>
+        <NavLink className="hover:text-pink-500 hover:font-bold" to="/add-service">Add Service</NavLink>
       </li>
       <li>
-        <NavLink to="/my-bookings">My Bookings</NavLink>
+        <NavLink className="hover:text-pink-500 hover:font-bold" to="/my-bookings">My Bookings</NavLink>
       </li>
       <li>
-        <NavLink to="/profile">Profile</NavLink>
+        <NavLink className="hover:text-pink-500 hover:font-bold" to="/profile">Profile</NavLink>
       </li>
     </>
   );
@@ -56,7 +56,7 @@ const Navbar = () => {
         <figure>
          <Link to='/'>
              <img
-            className="btn-ghost h-16 w-28 text-xl"
+            className="btn-ghost h-14 w-20 md:h-16 md:w-28 text-xl"
             src={logoImg}
             alt=""
           /> 
