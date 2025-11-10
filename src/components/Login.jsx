@@ -2,7 +2,6 @@ import React, { useContext, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import Swal from "sweetalert2";
-import toast from "react-hot-toast";
 
 const Login = () => {
 
@@ -18,29 +17,6 @@ const Login = () => {
    //const emailRef = useRef();
  // const location = useLocation();
 
- // for
-  const emailFromLogin = location.state?.email || "";
-
-  const handleResetPassword = (e) => {
-    e.preventDefault();
-    const email = emailRef.current.value;
-
-    if (!email) {
-      toast.error("⚠️ Please enter your email!");
-      return;
-    }
-
-    sendPasswordResetEmail(auth, email)
-      .then(() => {
-        toast.success("Password reset email sent! Please check your inbox.");
-
-       // window.open("https://mail.google.com/", "_blank");
-    
-      })
-      .catch((error) => {
-        toast.error(error.message);
-      });
-  };
 
   //logout
   const handleLogOut = (e) => {
@@ -93,16 +69,17 @@ const Login = () => {
         <form onSubmit={handleLogOut} >
           <fieldset className="fieldset">
           <label className="label">Email</label>
-          <input type="email" className="input" placeholder="Email" />
+          <input type="email" name="email" className="input" required placeholder="Email" />
           <label className="label">Password</label>
-          <input type="password" className="input" placeholder="Password" />
-          <div>
-            
+          <input type="password"  name="password" className="input" required placeholder="Password" />
+         
             {/* forget password */}
-            <a 
+           <div >
+            <Link to="/forgetPassword"
              state={{ email: emailRef.current?.value || "" }}
-            className="link link-hover">Forgot password?</a>
+            className="link link-hover">Forgot password?</Link>
           </div>
+
            {error && <p className="text-red-600">{error}</p>}
           <button className="btn btn-neutral  bg-green-600 hover:bg-green-700 mt-4">
             Login

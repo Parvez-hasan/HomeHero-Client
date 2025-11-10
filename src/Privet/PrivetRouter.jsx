@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
 import { Navigate, useLocation } from "react-router";
+import Loading from "../Pages/Loading";
 
 const PrivetRouter = ({children}) => {
 
@@ -11,7 +12,7 @@ const PrivetRouter = ({children}) => {
   //console.log(user);
  
   if (loading) {
-    return <p className="text-3xl text-center py-4">loading...</p>;
+    return <Loading></Loading>
   }
   if (user) {
     return children;
