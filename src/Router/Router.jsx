@@ -7,6 +7,8 @@ import Login from "../components/Login";
 import Register from "../components/Register";
 import ForgotPassword from "../components/ForgetPassword";
 import ErrorPage from "../Pages/ErrorPage";
+import MyService from "../Pages/MyService";
+import AddService from "../Pages/AddService";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +24,14 @@ export const router = createBrowserRouter([
             {
                 path: "service",
                 Component: Service
+            },
+            {
+                path: "my-services",
+                element: <MyService></MyService>
+            },
+            {
+                path: "add-service",
+                element: <AddService></AddService>
             },
             {
                 path: "login",

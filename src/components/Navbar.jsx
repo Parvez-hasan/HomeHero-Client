@@ -1,8 +1,30 @@
-import React from "react";
+import React, { use } from "react";
 import logoImg from "..//assets/rero-removebg-preview (1).png";
 import { Link, NavLink } from "react-router";
+import { AuthContext } from "../Context/AuthContext";
+import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+   const {user, logOut} = use(AuthContext);
+
+   //logout 
+    const handleLogOut = () => {
+    logOut()
+      .then(() => {
+      //  toast.success("Your account logOut successful");
+       Swal.fire({
+  title: "LogOut Successful!",
+  icon: "success",
+  draggable: true
+});
+      })
+      .catch((error) => {
+        // An error happened.
+        console.log(error.message);
+      });
+  };
+
   const links = (
     <>
       <li className="hover:text-pink-500 hover:font-bold">
@@ -11,6 +33,10 @@ const Navbar = () => {
       <li>
         <NavLink className="hover:text-pink-500 hover:font-bold" to="/service">Services</NavLink>
       </li>
+
+     {
+      user && <>
+      
       <li>
         <NavLink className="hover:text-pink-500 hover:font-bold" to="/my-services">My Services</NavLink>
       </li>
@@ -23,6 +49,8 @@ const Navbar = () => {
       <li>
         <NavLink className="hover:text-pink-500 hover:font-bold" to="/profile">Profile</NavLink>
       </li>
+      </>
+     }
     </>
   );
   return (
@@ -69,9 +97,21 @@ const Navbar = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <Link to='/register' className="btn mr-2 btn-outline btn-secondary">Register</Link>
+        {
+          user ? (
+            <button
+              onClick={handleLogOut}
+              className="btn bg-pink-500 hover:bg-pink-600 text-white"
+            >
+              LogOut
+            </button>
+          )
+          : <>
+           <Link to='/register' className="btn mr-2 btn-outline btn-secondary">Register</Link>
 
-        <Link to="/login" className="btn bg-green-500 text-white rounded-xl px-4 hover:bg-green-600">Login</Link>
+           <Link to="/login" className="btn bg-green-500 text-white rounded-xl px-4 hover:bg-green-600">Login</Link>
+          </>
+        }
       </div>
     </div>
   );

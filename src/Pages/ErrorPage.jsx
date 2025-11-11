@@ -17,7 +17,7 @@ const ErrorPage = () => {
       </p>
       
       <Link to="/">
-        <button className="bg-blue-600 rounded-sm py-2 px-4 flex mx-auto justify-center items-center">
+        <button className="bg-green-600 rounded-sm py-2 px-4 flex mx-auto justify-center items-center">
           <span className="text-white  font-stretch-50%">Go Home</span>
         </button>
       </Link>
