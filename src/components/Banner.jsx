@@ -27,7 +27,7 @@ const Banner = () => {
 
   const [current, setCurrent] = useState(0);
 
-  // Auto slide every 4 seconds
+  // Auto slide 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));

@@ -21,7 +21,7 @@ const Register = () => {
     const password = e.target.password.value;
     console.log(name, photo, email, password);
 
-    // name  vali
+    // name  valeta
     if (name.length < 5) {
       setNameError("You must provide at least 5 characters");
       return;
@@ -44,12 +44,12 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
 
-       // toast.success("✅ Account Created Successfully!", { autoClose: 1200 });
-        Swal.fire({
-          title: "✅ Account Created Successfully!",
-          icon: "success",
-          draggable: true,
-        });
+       toast.success("✅ Account Created Successfully!", { autoClose: 1200 });
+        // Swal.fire({
+        //   title: "✅ Account Created Successfully!",
+        //   icon: "success",
+        //   draggable: true,
+        // });
 
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
@@ -73,7 +73,7 @@ const Register = () => {
   const handleGoogleLogin = () => {
     googleLogin()
       .then(() => {
-     //   toast.success("🎉 Logged in with Google!");
+      // toast.success("🎉 Logged in with Google!");
         Swal.fire({
           title: "🎉 Logged in with Google Successfully!",
           icon: "success",

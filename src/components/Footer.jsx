@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="flex justify-center items-center">
             <figure>
               <Link to="/">
-                <img className="h-6 w-6 md:h-14 md:w-24" src={logoimg} alt="" />
+                <img className="h-12 w-12 md:h-18 md:w-24" src={logoimg} alt="" />
               </Link>
             </figure>
             <a className=" text-gray-700 btn-ghost text-xl font-bold">
@@ -42,16 +42,24 @@ const Footer = () => {
 
         <nav>
           <h6 className="text-xl text-gray-700">Social Links</h6>
+          {/* twitter  */}
           <div className="flex gap-5 py-2">
             <span>
               <FaXTwitter className=" text-black rounded-full" />
             </span>
-            <span>
-              <FaLinkedin className=" text-black rounded-full" />
-            </span>
-            <span>
-              <FaFacebook className=" text-black rounded-full" />
-            </span>
+               {/* linkedin */}
+             <a href="https://www.linkedin.com/in/md-parvez-583031305/" target="_blank">
+                <span>
+                <FaLinkedin className=" text-black rounded-full" />
+               </span>
+             </a>
+           {/* facebook */}
+            <a href="https://web.facebook.com/parvez.ahmed.577031" target="_blank">
+                <span>
+                 <FaFacebook className=" text-black rounded-full" />
+                </span>
+            </a>
+            
           </div>
         </nav>
       </div>

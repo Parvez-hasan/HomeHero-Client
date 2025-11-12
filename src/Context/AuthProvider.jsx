@@ -64,9 +64,9 @@ const AuthProvider = ({children}) => {
     console.log(user, loading);
     
     return (
-       <AuthContext value={AuthInfo}>
+       <AuthContext.Provider value={AuthInfo}>
         {children}
-       </AuthContext>
+       </AuthContext.Provider>
     );
 };
 

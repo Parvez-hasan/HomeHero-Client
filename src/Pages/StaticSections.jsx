@@ -5,7 +5,7 @@ const StaticSections = () => {
   return (
     <div className="bg-green-50 py-12">
 
-      {/* 🟩 WHY CHOOSE US SECTION */}
+      {/*  WHY CHOOSE US SECTION */}
       <section className="max-w-6xl mx-auto text-center mb-24 px-4 sm:px-6 lg:px-8">
         <motion.h2
           className="text-3xl sm:text-4xl font-bold text-green-600 mb-10"

@@ -77,7 +77,7 @@ const Login = () => {
            <div >
             <Link to="/forgetPassword"
              state={{ email: emailRef.current?.value || "" }}
-            className="link link-hover">Forgot password?</Link>
+            className="link link-hover font-semibold">Forgot password?</Link>
           </div>
 
            {error && <p className="text-red-600">{error}</p>}

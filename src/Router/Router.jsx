@@ -9,6 +9,9 @@ import ForgotPassword from "../components/ForgetPassword";
 import ErrorPage from "../Pages/ErrorPage";
 import MyService from "../Pages/MyService";
 import AddService from "../Pages/AddService";
+import PrivetRouter from "../Privet/PrivetRouter";
+import Loading from "../Pages/Loading";
+import Profile from "../Pages/Profile";
 
 export const router = createBrowserRouter([
     {
@@ -20,7 +23,8 @@ export const router = createBrowserRouter([
                 index: true,
                 path: "/",
                 Component: HomeLayout,
-                 loader: () => fetch('http://localhost:4000/services')
+                loader: () => fetch('http://localhost:4000/services'),
+                hydrateFallbackElement: <Loading></Loading>
             },
             {
                 path: "service",
@@ -29,11 +33,21 @@ export const router = createBrowserRouter([
             },
             {
                 path: "my-services",
-                element: <MyService></MyService>
+                element: <PrivetRouter>
+                         <MyService></MyService>
+                         </PrivetRouter>
             },
             {
                 path: "add-service",
-                element: <AddService></AddService>
+                element: <PrivetRouter>
+                         <AddService></AddService>
+                         </PrivetRouter>
+            },
+            {
+                path: "profile",
+                element: <PrivetRouter> 
+                    <Profile></Profile>
+                    </PrivetRouter>
             },
             {
                 path: "login",
