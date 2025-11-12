@@ -20,6 +20,7 @@ export const router = createBrowserRouter([
                 index: true,
                 path: "/",
                 Component: HomeLayout,
+                 loader: () => fetch('http://localhost:4000/services')
             },
             {
                 path: "service",
