@@ -21,7 +21,7 @@ const MyService = () => {
         })
         .catch((err) => console.error(err));
     }
-  }, [user?.email]);
+  }, [user]);
 
   //  Delete Service
   const handleDelete = (id) => {
@@ -79,7 +79,7 @@ const MyService = () => {
             {services.map((service) => (
               <tr
                 key={service._id}
-                className="border-b hover:bg-pink-50 transition"
+                className="border-b hover:bg-pink-50 items-center transition"
               >
                 <td className="p-3">
                   <img
@@ -95,13 +95,13 @@ const MyService = () => {
                 <td className="p-3 flex gap-3">
                   <Link
                     to={`/update-service/${service._id}`}
-                    className="bg-blue-500 text-white px-2 sm:px-3 py-1 rounded-md text-sm sm:text-base hover:bg-blue-600"
+                    className="bg-green-500 text-white px-2 sm:px-3 py-1 rounded-md text-sm sm:text-base hover:bg-green-600"
                   >
                     Edit
                   </Link>
                   <button
                     onClick={() => handleDelete(service._id)}
-                    className="bg-red-500 text-white px-3 py-1 rounded-md hover:bg-red-600"
+                    className="bg-pink-500 text-white px-3 py-1 rounded-md hover:bg-pink-600"
                   >
                     Delete
                   </button>
