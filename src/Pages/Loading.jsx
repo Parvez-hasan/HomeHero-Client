@@ -2,8 +2,10 @@ import React from "react";
 
 const Loading = () => {
   return (
-    <div className="min-h-screen flex justify-center items-center">
-      <span className="loading loading-bars loading-xl"></span>
+    <div className="flex-col gap-4 py-6 w-full flex items-center justify-center">
+      <div className="w-20 h-20 border-4 border-transparent text-green-500 text-4xl animate-spin flex items-center justify-center border-t-green-500 rounded-full">
+        <div className="w-16 h-16 border-4 border-transparent text-pink-500 text-2xl animate-spin flex items-center justify-center border-t-pink-500 rounded-full"></div>
+      </div>
     </div>
   );
 };

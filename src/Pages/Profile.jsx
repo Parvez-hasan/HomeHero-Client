@@ -43,7 +43,7 @@ const Profile = () => {
       <div className="flex flex-col items-center space-y-4">
         <img
           src={user?.photoURL || "https://via.placeholder.com/88" }
-          alt="User"
+          alt="profile"
           className="w-24 h-24 rounded-full border-4 border-pink-400"
         />
         <h3 className="text-lg font-semibold">{user?.displayName || "User"}</h3>

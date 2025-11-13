@@ -12,6 +12,7 @@ import AddService from "../Pages/AddService";
 import PrivetRouter from "../Privet/PrivetRouter";
 import Loading from "../Pages/Loading";
 import Profile from "../Pages/Profile";
+import ServiceSix from "../Pages/ServiceSix";
 
 export const router = createBrowserRouter([
     {
@@ -27,9 +28,15 @@ export const router = createBrowserRouter([
                 hydrateFallbackElement: <Loading></Loading>
             },
             {
+                path: "/",
+                Component: <ServiceSix></ServiceSix>,
+                loader: () => fetch('http://localhost:4000/services-home')
+            },
+            {
                 path: "service",
                 Component: Service,
-                loader: () => fetch('http://localhost:4000/services')
+                loader: () => fetch('http://localhost:4000/services'),
+                hydrateFallbackElement: <Loading></Loading>
             },
             {
                 path: "my-services",

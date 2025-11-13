@@ -6,18 +6,18 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-   const {user, logOut} = use(AuthContext);
+  const { user, logOut } = use(AuthContext);
 
-   //logout 
-    const handleLogOut = () => {
+  //logout
+  const handleLogOut = () => {
     logOut()
       .then(() => {
         toast.success("Your account logOut successful");
-//        Swal.fire({
-//   title: "LogOut Successful!",
-//   icon: "success",
-//   draggable: true
-// });
+        //        Swal.fire({
+        //   title: "LogOut Successful!",
+        //   icon: "success",
+        //   draggable: true
+        // });
       })
       .catch((error) => {
         // An error happened.
@@ -31,26 +31,47 @@ const Navbar = () => {
         <NavLink to="/">Home</NavLink>
       </li>
       <li>
-        <NavLink className="hover:text-pink-500 hover:font-bold" to="/service">Services</NavLink>
+        <NavLink className="hover:text-pink-500 hover:font-bold" to="/service">
+          Services
+        </NavLink>
       </li>
 
-     {
-      user && <>
-      
-      <li>
-        <NavLink className="hover:text-pink-500 hover:font-bold" to="/my-services">My Services</NavLink>
-      </li>
-      <li>
-        <NavLink className="hover:text-pink-500 hover:font-bold" to="/add-service">Add Service</NavLink>
-      </li>
-      <li>
-        <NavLink className="hover:text-pink-500 hover:font-bold" to="/my-bookings">My Bookings</NavLink>
-      </li>
-      <li>
-        <NavLink className="hover:text-pink-500 hover:font-bold" to="/profile">Profile</NavLink>
-      </li>
-      </>
-     }
+      {user && (
+        <>
+          <li>
+            <NavLink
+              className="hover:text-pink-500 hover:font-bold"
+              to="/my-services"
+            >
+              My Services
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="hover:text-pink-500 hover:font-bold"
+              to="/add-service"
+            >
+              Add Service
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="hover:text-pink-500 hover:font-bold"
+              to="/my-bookings"
+            >
+              My Bookings
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="hover:text-pink-500 hover:font-bold"
+              to="/profile"
+            >
+              Profile
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
   return (
@@ -82,36 +103,49 @@ const Navbar = () => {
           </ul>
         </div>
         <figure>
-         <Link to='/'>
-             <img
-            className="btn-ghost h-14 w-20 md:h-16 md:w-28 text-xl"
-            src={logoImg}
-            alt=""
-          /> 
-         </Link>
+          <Link to="/">
+            <img
+              className="btn-ghost h-14 w-20 md:h-16 md:w-28 text-xl"
+              src={logoImg}
+              alt=""
+            />
+          </Link>
         </figure>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {links}
-        </ul>
+        <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
-        {
-          user ? (
-            <button
-              onClick={handleLogOut}
-              className="btn bg-pink-500 hover:bg-pink-600 text-white"
-            >
-              LogOut
-            </button>
-          )
-          : <>
-           <Link to='/register' className="btn mr-2 btn-outline btn-secondary">Register</Link>
+        {user ? (
+          <Link to="/profile">
+            {" "}
+            <img
+              className="w-12 h-12 rounded-full"
+              src={`${user ? user.photoURL : ""}`}
+              alt=""
+            />{" "}
+          </Link>
+        ) : (
+          // <button
+          //   onClick={handleLogOut}
+          //   className="btn bg-pink-500 hover:bg-pink-600 text-white"
+          // >
+          //   LogOut
+          // </button>
 
-           <Link to="/login" className="btn bg-green-500 text-white rounded-xl px-4 hover:bg-green-600">Login</Link>
+          <>
+            <Link to="/register" className="btn mr-2 btn-outline btn-secondary">
+              Register
+            </Link>
+
+            <Link
+              to="/login"
+              className="btn bg-green-500 text-white rounded-xl px-4 hover:bg-green-600"
+            >
+              Login
+            </Link>
           </>
-        }
+        )}
       </div>
     </div>
   );

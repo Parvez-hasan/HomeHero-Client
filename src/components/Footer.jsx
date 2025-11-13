@@ -1,9 +1,10 @@
 import React from "react";
-import { FaFacebook, FaLinkedin } from "react-icons/fa";
+import { FaFacebook, FaLinkedin, FaPhone } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
-import { FaXTwitter } from "react-icons/fa6";
+import { FaLocationDot, FaXTwitter } from "react-icons/fa6";
 import logoimg from "..//assets/rero-removebg-preview (1).png";
 import { Link } from "react-router";
+import { CgMail } from "react-icons/cg";
 const Footer = () => {
   return (
     <footer className="container mx-auto  bg-green-100  ">
@@ -35,9 +36,37 @@ const Footer = () => {
         </nav>
         <nav>
           <h6 className="font-bold  text-gray-700 py-2">Contacts Us</h6>
-          <a className="link  text-gray-700 link-hover">17 Arlington St, Boston, MA, 02116</a>
-          <a className="link  text-gray-700 link-hover">+880 1948-017882</a>
-          <a className="link  text-gray-700 link-hover">parvezweb.33@gmail.com</a>
+          {/* location */}
+         <div className="flex justify-center items-center">
+          <div className="text-black p-2">
+            <FaLocationDot />
+          </div>
+          <div>
+             <a className="link  text-gray-700 link-hover">17 Arlington St, Kishoreganj, Bangladesh</a>
+          </div>
+         </div>
+         {/* phone  */}
+         <div className="flex justify-center items-center">
+          <div className="text-black p-2">
+             <FaPhone />
+          </div>
+          <div>
+             <a className="link  text-gray-700 link-hover">+880 1948-017882</a>
+          </div>
+         </div>
+         
+        {/* gmail */}
+
+         <div className="flex justify-center items-center">
+          <div className="text-black p-2">
+             <CgMail />
+          </div>
+          <div>
+             <a className="link  text-gray-700 link-hover">parvezweb.33@gmail.com</a>
+          </div>
+         </div>
+          
+          
         </nav>
 
         <nav>
