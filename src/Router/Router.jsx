@@ -13,6 +13,7 @@ import PrivetRouter from "../Privet/PrivetRouter";
 import Loading from "../Pages/Loading";
 import Profile from "../Pages/Profile";
 import ServiceSix from "../Pages/ServiceSix";
+import EditService from "../Pages/EditService";
 
 export const router = createBrowserRouter([
     {
@@ -43,6 +44,12 @@ export const router = createBrowserRouter([
                 element: <PrivetRouter>
                          <MyService></MyService>
                          </PrivetRouter>
+            },
+            {
+                path: "edit-service/:id",
+                element: <PrivetRouter>
+                    <EditService></EditService>
+                 </PrivetRouter>
             },
             {
                 path: "add-service",

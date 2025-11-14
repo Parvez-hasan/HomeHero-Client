@@ -4,11 +4,12 @@ import toast from "react-hot-toast";
 import { Link } from "react-router";
 import Loading from "./Loading";
 import { AuthContext } from "../Context/AuthContext";
+import Swal from "sweetalert2";
 
 const MyService = () => {
-  const { user, loading, setLoading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const [services, setServices] = useState([]);
-  // const [loading, setLoading] = useState(true);
+   const [loading, setLoading] = useState(true);
 
   // provider own services
   useEffect(() => {
@@ -23,25 +24,40 @@ const MyService = () => {
     }
   }, [user]);
 
-  //  Delete Service
-  const handleDelete = (id) => {
-    const confirmDelete = window.confirm(
-      "Are you sure to delete this service?"
-    );
-    if (!confirmDelete) return;
 
-    fetch(`http://localhost:4000/services/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.deletedCount > 0) {
-          toast.success("Service deleted successfully!");
-          setServices(services.filter((s) => s._id !== id));
-        }
+  //  Delete Service
+ 
+  const handleDelete = (_id) => {
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      fetch(`http://localhost:4000/services/${_id}`, {
+        method: "DELETE",
       })
-      .catch((err) => console.error(err));
-  };
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+    
+             Swal.fire({
+          title: "Deleted!",
+          text: "Your file has been deleted.",
+          icon: "success",
+        });
+            setServices((prev) => prev.filter((s) => s._id !== _id));
+          }
+        })
+        .catch((err) => console.error(err));
+    }
+  });
+};
+
 
   if (loading) {
     return <Loading></Loading>;
@@ -94,7 +110,7 @@ const MyService = () => {
                 <td className="p-3">${service.price}</td>
                 <td className="p-3 flex gap-3">
                   <Link
-                    to={`/update-service/${service._id}`}
+                    to={`/edit-service/${service._id}`}
                     className="bg-green-500 text-white px-2 sm:px-3 py-1 rounded-md text-sm sm:text-base hover:bg-green-600"
                   >
                     Edit
