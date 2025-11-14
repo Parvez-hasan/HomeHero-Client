@@ -23,16 +23,11 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                path: "/",
                 Component: HomeLayout,
-                loader: () => fetch('http://localhost:4000/services'),
+                loader: () => fetch('http://localhost:4000/services-home'),
                 hydrateFallbackElement: <Loading></Loading>
             },
-            {
-                path: "/",
-                Component: <ServiceSix></ServiceSix>,
-                loader: () => fetch('http://localhost:4000/services-home')
-            },
+           
             {
                 path: "service",
                 Component: Service,
