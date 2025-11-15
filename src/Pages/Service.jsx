@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { motion } from "framer-motion";
 import Loading from "./Loading";
 import { AuthContext } from "../Context/AuthContext";
@@ -83,6 +83,7 @@ const Service = () => {
                 <span className="text-pink-600 dark:text-pink-400 font-bold text-lg">
                   ${service.price}
                 </span>
+                <Link to={`/service/${service._id}`}>
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ backgroundColor: "#db2777" }} 
@@ -90,6 +91,7 @@ const Service = () => {
                 >
                   View Details
                 </motion.button>
+                </Link>
               </div>
             </div>
           </motion.div>

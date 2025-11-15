@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import Loading from "./Loading";
 import { motion } from "framer-motion";
-import { useLoaderData } from "react-router";
+import { Link, useLoaderData } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 
 const ServiceSix = () => {
@@ -69,42 +69,50 @@ const ServiceSix = () => {
                 <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">
                   {service.name}
                 </h3>
+
                 <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                   {service.category}
                 </p>
+
                 <p className="text-gray-600 dark:text-gray-300 mt-2">
                   {service.description.slice(0, 60)}...
                 </p>
               </div>
 
+              {/* ⭐ Rating + Price */}
               <div className="mt-4 flex items-center justify-between">
-                <span className="text-pink-600 dark:text-pink-400 font-bold text-lg">
+                {/* ⭐ Fake rating */}
+                 <span className="text-pink-600 dark:text-pink-400 font-bold text-lg">
                   ${service.price}
                 </span>
-                <motion.button
-                  whileTap={{ scale: 0.9 }}
-                  whileHover={{ backgroundColor: "#db2777" }}
-                  className="bg-pink-500 text-white text-sm px-4 py-2 rounded-full transition-colors"
-                >
-                  View Details
-                </motion.button>
+                <div className="flex items-center gap-1 text-yellow-500 text-base">
+                  <span>⭐</span>
+                  <span>⭐</span>
+                  <span>⭐</span>
+                  <span>⭐</span>
+                  <span className="text-gray-400">⭐</span>
+                  <span className="text-sm text-gray-500 ml-1">(4.0)</span>
+                </div>
+
               </div>
             </div>
           </motion.div>
         ))}
       </motion.div>
-      <div className="flex justify-center py-2">
-        <button class="cursor-pointer bg-gradient-to-b from-green-600 to-green-600 shadow-[0px_4px_32px_0_rgba(99,102,241,.70)] px-6 py-3 rounded-xl border-[1px] border-slate-500 text-white font-medium group">
-          <div class="relative overflow-hidden">
-            <p class="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
-              See All Services
-            </p>
-            <p class="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
-              See All services
-            </p>
-          </div>
-        </button>
-      </div>
+      <Link to="/service">
+        <div className="flex justify-center py-2">
+          <button className="cursor-pointer bg-gradient-to-b from-green-600 to-green-600 shadow-[0px_4px_32px_0_rgba(99,102,241,.70)] px-6 py-3 rounded-xl border-[1px] border-slate-500 text-white font-medium group">
+            <div className="relative overflow-hidden">
+              <p className="group-hover:-translate-y-7 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                See All Services
+              </p>
+              <p className="absolute top-7 left-0 group-hover:top-0 duration-[1.125s] ease-[cubic-bezier(0.19,1,0.22,1)]">
+                See All services
+              </p>
+            </div>
+          </button>
+        </div>
+      </Link>
     </div>
   );
 };
