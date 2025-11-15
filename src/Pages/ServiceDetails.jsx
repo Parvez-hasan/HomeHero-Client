@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { useLoaderData } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
+import { motion } from "framer-motion";
 
 const ServiceDetails = () => {
 
@@ -35,7 +36,7 @@ const ServiceDetails = () => {
       });
   };
   return (
-    <div className="max-w-4xl mx-auto p-6">
+    <div className="max-w-4xl bg-green-100 mx-auto p-6">
 
       {/* Image */}
       <motion.img

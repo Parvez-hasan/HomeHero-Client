@@ -83,7 +83,7 @@ const Service = () => {
                 <span className="text-pink-600 dark:text-pink-400 font-bold text-lg">
                   ${service.price}
                 </span>
-                <Link to={`/service/${service._id}`}>
+                <Link to={`/serviceDetails/${service._id}`}>
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   whileHover={{ backgroundColor: "#db2777" }} 
