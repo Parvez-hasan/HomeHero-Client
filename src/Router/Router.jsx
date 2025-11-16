@@ -15,6 +15,7 @@ import Profile from "../Pages/Profile";
 import ServiceSix from "../Pages/ServiceSix";
 import EditService from "../Pages/EditService";
 import ServiceDetails from "../Pages/ServiceDetails";
+import MyBookings from "../Pages/MyBookings";
 
 export const router = createBrowserRouter([
     {
@@ -61,7 +62,15 @@ export const router = createBrowserRouter([
               loader: ({ params }) =>
               fetch(`http://localhost:4000/services/${params.id}`),
             },
+            {
+                path: "my-bookings",
+                element:(
+                    <PrivetRouter>
+                        <MyBookings></MyBookings>
+                    </PrivetRouter>
+                )
 
+            },
             {
                 path: "profile",
                 element: <PrivetRouter> 

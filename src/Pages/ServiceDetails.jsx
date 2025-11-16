@@ -22,6 +22,8 @@ const ServiceDetails = () => {
       serviceId: service._id,
       bookingDate: form.date.value,
       price: service.price,
+      serviceName: service.name,
+      serviceImg: service.image
     };
 
     fetch("http://localhost:4000/bookings", {
@@ -31,14 +33,14 @@ const ServiceDetails = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        toast.success("Booking Successful!");
+        toast.success("Your Service Booking Successful!");
         setOpenModal(false);
       });
   };
   return (
     <div className="max-w-4xl bg-green-100 mx-auto p-6">
 
-      {/* Image */}
+      {/* Img */}
       <motion.img
         src={service.image}
         alt={service.name}
@@ -48,7 +50,7 @@ const ServiceDetails = () => {
         transition={{ duration: 0.6 }}
       />
 
-      {/* Info Section */}
+  
       <div className="mt-6 space-y-4">
         <h1 className="text-3xl font-bold text-pink-600">{service.name}</h1>
 
@@ -83,7 +85,7 @@ const ServiceDetails = () => {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4">
           <div className="bg-white w-full max-w-md p-6 rounded-2xl shadow-xl">
             <h2 className="text-xl font-semibold text-center mb-4 text-pink-600">
-              Confirm Booking
+              Confirm Booking Service
             </h2>
 
             <div className="mb-3">

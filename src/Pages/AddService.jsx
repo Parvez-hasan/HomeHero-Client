@@ -87,7 +87,7 @@ const AddService = () => {
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
       >
-        <h2 className="text-2xl sm:text-3xl font-bold text-center text-pink-600 dark:text-pink-400 mb-6">
+        <h2 className="text-2xl sm:text-3xl p-3 font-bold text-center text-pink-600 dark:text-pink-400 mb-6">
           Add New Service
         </h2>
 
