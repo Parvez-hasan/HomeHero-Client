@@ -1,4 +1,4 @@
-import React, { use } from "react";
+import React, { use, useEffect, useState } from "react";
 import logoImg from "..//assets/rero-removebg-preview (1).png";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
@@ -6,24 +6,35 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const Navbar = () => {
-  const { user, logOut } = use(AuthContext);
+  const { user, } = use(AuthContext);
 
+   const [theme, setTheme] = useState(localStorage.getItem('theme') || "light")
+   
+    useEffect(() => {
+    const html = document.querySelector('html')
+     html.setAttribute("data-theme", theme)
+     localStorage.setItem("theme", theme)
+  }, [theme])
+
+   const handleTheme = (checked) => {
+    setTheme(checked ? "dark": "light")
+  }
   //logout
-  const handleLogOut = () => {
-    logOut()
-      .then(() => {
-        toast.success("Your account logOut successful");
-        //        Swal.fire({
-        //   title: "LogOut Successful!",
-        //   icon: "success",
-        //   draggable: true
-        // });
-      })
-      .catch((error) => {
-        // An error happened.
-        console.log(error.message);
-      });
-  };
+  // const handleLogOut = () => {
+  //   logOut()
+  //     .then(() => {
+  //       toast.success("Your account logOut successful");
+  //       //        Swal.fire({
+  //       //   title: "LogOut Successful!",
+  //       //   icon: "success",
+  //       //   draggable: true
+  //       // });
+  //     })
+  //     .catch((error) => {
+  //       // An error happened.
+  //       console.log(error.message);
+  //     });
+  // };
 
   const links = (
     <>
@@ -75,7 +86,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-green-100 shadow-sm px-2 sticky top-0 z-50">
+    <div className="navbar bg-green-100 dark:bg-gray-800 shadow-sm px-2 sticky top-0 z-50">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -116,6 +127,16 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
+
+          <input
+           onChange={(e)=> handleTheme(e.target.checked)}
+           type="checkbox"
+           defaultChecked={localStorage.getItem('theme') === "dark"}
+           className="toggle toggle-secondary"/>
+
+           {/* <input type="checkbox" defaultChecked className="toggle toggle-secondary" /> */}
+
+
         {user ? (
           <Link to="/profile">
             {" "}

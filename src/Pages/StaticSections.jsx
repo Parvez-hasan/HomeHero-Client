@@ -3,7 +3,7 @@ import { Star, ThumbsUp, ShieldCheck, Users } from "lucide-react";
 
 const StaticSections = () => {
   return (
-    <div className="bg-green-50 py-12">
+    <div className="bg-gree py-12">
 
       {/*  WHY CHOOSE US SECTION */}
       <section className="max-w-6xl mx-auto text-center mb-24 px-4 sm:px-6 lg:px-8">
@@ -57,7 +57,7 @@ const StaticSections = () => {
       </section>
 
       {/* CUSTOMER TESTIMONIALS SECTION */}
-      <section className="bg-green-50 py-12">
+      <section className="bg-gree py-12">
         <div className="max-w-6xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <motion.h2
             className="text-3xl sm:text-4xl font-bold text-green-600 mb-10"
