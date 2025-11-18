@@ -1,28 +1,49 @@
 import React, { use, useEffect, useState } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import Swal from "sweetalert2";
 
 const MyBookings = () => {
   const { user } = use(AuthContext);
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:4000/bookings?email=${user.email}`)
+    fetch(`https://home-hero-server-silk.vercel.app/bookings?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => setBookings(data));
   }, [user.email]);
 
   // delete service booking
-  const handleCancel = (id) => {
-    fetch(`http://localhost:4000/bookings/${id}`, {
+  const handleCancel = async(id) => {
+    const result = await Swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, delete it!",
+    })
+
+    if(result.isConfirmed) {
+    fetch(`https://home-hero-server-silk.vercel.app/bookings/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())
       .then((data) => {
         if (data.deletedCount > 0) {
+
+      
           setBookings(bookings.filter((b) => b._id !== id));
-          alert("Booking canceled!");
+            Swal.fire({
+                    title: "Deleted!",
+                    text: "Your file has been deleted.",
+                    icon: "success",
+                  });
+                  
+         // alert("Booking canceled!");
         }
       });
+    };
   };
 
   return (
@@ -59,7 +80,7 @@ const MyBookings = () => {
                   <td className="p-2 border">
                     <img
                       className="w-14 h-14 md:w-20 md:h-20 object-cover rounded-md mx-auto"
-                      src={b.serviceImage}
+                      src={b.serviceImg}
                       alt={b.serviceName}
                     />
                   </td>

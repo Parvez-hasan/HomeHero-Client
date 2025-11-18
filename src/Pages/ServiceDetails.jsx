@@ -23,10 +23,10 @@ const ServiceDetails = () => {
       bookingDate: form.date.value,
       price: service.price,
       serviceName: service.name,
-      serviceImg: service.image
+     serviceImg: service.image
     };
 
-    fetch("http://localhost:4000/bookings", {
+    fetch("https://home-hero-server-silk.vercel.app/bookings", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(bookingData),
@@ -92,6 +92,7 @@ const ServiceDetails = () => {
               <p>
                 <strong>Service:</strong> {service.name}
               </p>
+              <img src={service.image} alt="" />
               <p>
                 <strong>Price:</strong> ${service.price}
               </p>

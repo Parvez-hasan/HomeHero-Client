@@ -126,13 +126,7 @@ const Navbar = () => {
             />{" "}
           </Link>
         ) : (
-          // <button
-          //   onClick={handleLogOut}
-          //   className="btn bg-pink-500 hover:bg-pink-600 text-white"
-          // >
-          //   LogOut
-          // </button>
-
+        
           <>
             <Link to="/register" className="btn mr-2 btn-outline btn-secondary">
               Register

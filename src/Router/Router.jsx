@@ -26,14 +26,14 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 Component: HomeLayout,
-                loader: () => fetch('http://localhost:4000/services-home'),
+                loader: () => fetch('https://home-hero-server-silk.vercel.app/services-home'),
                 hydrateFallbackElement: <Loading></Loading>
             },
            
             {
                 path: "service",
                 Component: Service,
-                loader: () => fetch('http://localhost:4000/services'),
+                loader: () => fetch('https://home-hero-server-silk.vercel.app/services'),
                 hydrateFallbackElement: <Loading></Loading>
             },
             {
@@ -60,7 +60,7 @@ export const router = createBrowserRouter([
                        <ServiceDetails></ServiceDetails>
                        </PrivetRouter>,
               loader: ({ params }) =>
-              fetch(`http://localhost:4000/services/${params.id}`),
+              fetch(`https://home-hero-server-silk.vercel.app/services/${params.id}`),
             },
             {
                 path: "my-bookings",

@@ -14,7 +14,7 @@ const MyService = () => {
   // provider own services
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:4000/services?email=${user.email}`)
+      fetch(`https://home-hero-server-silk.vercel.app/services?email=${user.email}`)
         .then((res) => res.json())
         .then((data) => {
           setServices(data);
@@ -38,7 +38,7 @@ const MyService = () => {
     confirmButtonText: "Yes, delete it!",
   }).then((result) => {
     if (result.isConfirmed) {
-      fetch(`http://localhost:4000/services/${_id}`, {
+      fetch(`https://home-hero-server-silk.vercel.app/services/${_id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())

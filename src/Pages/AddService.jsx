@@ -32,7 +32,7 @@ const AddService = () => {
       email: user?.email,
     };
 
-    fetch("http://localhost:4000/services", {
+    fetch("https://home-hero-server-silk.vercel.app/services", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

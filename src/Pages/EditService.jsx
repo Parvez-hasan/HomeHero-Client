@@ -12,7 +12,7 @@ const EditService = () => {
 
   //  Load service by _id
   useEffect(() => {
-    fetch(`http://localhost:4000/services/${id}`)
+    fetch(`https://home-hero-server-silk.vercel.app/services/${id}`)
       .then((res) => res.json())
       .then((data) => setService(data))
       .catch(() => toast.error("Failed to load service"));
@@ -39,7 +39,7 @@ const EditService = () => {
     };
 
     //  PUT request for update
-    fetch(`http://localhost:4000/services/${id}`, {
+    fetch(`https://home-hero-server-silk.vercel.app/services/${id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",
