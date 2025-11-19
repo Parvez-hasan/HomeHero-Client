@@ -57,7 +57,7 @@ const EditService = () => {
        <div className="max-w-xl mx-auto p-5 bg-green-50 ">
       <h2 className="text-3xl text-pink-600 font-bold mb-5 text-center">Edit Service</h2>
 
-      <form onSubmit={handleUpdate} className="space-y-4">
+      <form onSubmit={handleUpdate} className="space-y-4 dark:text-gray-900">
 
         {/* Title */}
         <div>

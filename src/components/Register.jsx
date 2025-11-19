@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../Context/AuthContext";
 import Swal from "sweetalert2";
 import toast from "react-hot-toast";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { createUser, setUser, updateUser, googleLogin } =
@@ -10,6 +11,7 @@ const Register = () => {
 
   const [nameError, setNameError] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
 
@@ -45,12 +47,7 @@ const Register = () => {
         const user = result.user;
 
        toast.success("✅ Account Created Successfully!", { autoClose: 1200 });
-        // Swal.fire({
-        //   title: "✅ Account Created Successfully!",
-        //   icon: "success",
-        //   draggable: true,
-        // });
-
+       
         updateUser({ displayName: name, photoURL: photo })
           .then(() => {
             setUser({ ...user, displayName: name, photoURL: photo });
@@ -71,6 +68,7 @@ const Register = () => {
 
   // google login
   const handleGoogleLogin = () => {
+
     googleLogin()
       .then(() => {
       // toast.success("🎉 Logged in with Google!");
@@ -83,6 +81,15 @@ const Register = () => {
       })
       .catch((err) => setError(err.message));
   };
+
+  //show password
+    const hendleShowPassword = (e) => {
+      e.preventDefault();
+    
+      setShowPassword(!showPassword);
+
+    }
+
 
   return (
     <div className="card bg-base-100 mx-auto max-w-sm shrink-0 shadow-2xl">
@@ -122,13 +129,21 @@ const Register = () => {
             />
             {/* password */}
             <label className="label">Password</label>
-            <input
-              type="password"
+            <div className="relative">
+              <input
+              type={showPassword ? 'text' : 'password'}
               name="password"
               className="input"
               required
               placeholder="Password"
             />
+             <button 
+             onClick={hendleShowPassword}
+             className="btn btn-xs mt-2 right-7 absolute">
+
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+             </button>
+            </div>
             {error && <p className="text-red-500">{error}</p>}
             <button className="btn btn-neutral bg-green-600 hover:bg-green-700 mt-4">
               Register

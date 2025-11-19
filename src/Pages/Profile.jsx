@@ -46,7 +46,7 @@ const Profile = () => {
           alt="profile"
           className="w-24 h-24 rounded-full border-4 border-pink-400"
         />
-        <h3 className="text-lg font-semibold">{user?.displayName || "User"}</h3>
+        <h3 className="text-lg font-semibold dark:text-gray-900">{user?.displayName || "User"}</h3>
         <p className="text-gray-500">{user?.email}</p>
         <p className="text-sm text-gray-600">
           Last Login: {user?.metadata?.lastSignInTime}
@@ -58,7 +58,7 @@ const Profile = () => {
         <h3 className="text-xl font-semibold mb-3 text-gray-700">
           Edit Profile
         </h3>
-        <div className="space-y-3">
+        <div className="space-y-3 dark:text-gray-900">
           <input
             type="text"
             placeholder="Enter new name"

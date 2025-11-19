@@ -1,13 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link, useLoaderData } from "react-router";
 import { motion } from "framer-motion";
 import Loading from "./Loading";
 import { AuthContext } from "../Context/AuthContext";
+import toast from "react-hot-toast";
 
 const Service = () => {
-
+ 
   const { loading } = useContext(AuthContext); 
   const data = useLoaderData();
+
+  const [services , setServices ] = useState(data)
+ // console.log(services);
+  
+   const [min , setMin] = useState("");
+   const [max , setMax] = useState("");
+
 
   // Animation
   const containerVariants = {
@@ -30,6 +38,24 @@ const Service = () => {
     },
   };
 
+  // Filter price
+  const handleFilter = () => {
+    if (!min || !max) {
+      toast.error("Please enter both Min & Max price");
+      return;
+    }
+
+    fetch(
+      `https://home-hero-server-silk.vercel.app/services?min=${min}&max=${max}`
+    )
+      .then(res => res.json())
+      .then(data => {
+        setServices(data);
+        console.log(data);
+        
+      });
+  };
+
   // Loading 
   if (loading) return <Loading />;
 
@@ -41,14 +67,49 @@ const Service = () => {
       <p className="text-gray-700 dark:text-gray-300 font-medium max-w-md text-center mx-auto px-2 mb-6">
         Explore our most popular and trusted household services near you.
       </p>
+       
+       
+      {/* Filter price */}
+      <div className="max-w-2xl mx-auto flex flex-col sm:flex-row items-center dark:text-gray-900 gap-4 bg-gray-50 p-4 rounded-xl shadow mb-8">
+        <input
+          type="number"
+          placeholder="Min Price"
+          value={min}
+          onChange={(e) => setMin(e.target.value)}
+          className="border px-4 py-2 rounded-lg w-full"
+        />
 
+        <input
+          type="number"
+          placeholder="Max Price"
+          value={max}
+          onChange={(e) => setMax(e.target.value)}
+          className="border px-4 py-2 rounded-lg w-full"
+        />
+
+        <button
+          onClick={handleFilter}
+          className="bg-pink-500 text-white px-4 py-2 rounded-lg w-full sm:w-auto"
+        >
+          Filter
+        </button>
+
+        {/* <button
+        //  onClick={resetFilter}
+          className="bg-gray-300 px-4 py-2 rounded-lg w-full sm:w-auto"
+        >
+          Reset
+        </button> */}
+      </div>
+ 
+       {/* all service cart */}
       <motion.div
         className="grid gap-6 py-3 px-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
       >
-        {data.map((service) => (
+        {services.map((service) => (
           <motion.div
             key={service._id}
             variants={cardVariants}

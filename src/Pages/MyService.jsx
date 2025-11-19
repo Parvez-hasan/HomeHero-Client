@@ -64,7 +64,7 @@ const MyService = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto py-6 px-3 sm:px-6 lg:px-8" >
+    <div className="max-w-6xl mx-auto py-8 px-3 sm:px-6 lg:px-8" >
       
       <div  className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6 text-center sm:text-left">
     
@@ -95,7 +95,7 @@ const MyService = () => {
             {services.map((service) => (
               <tr
                 key={service._id}
-                className="border-b hover:bg-pink-50 items-center transition"
+                className="border-b  items-center transition"
               >
                 <td className="p-3">
                   <img

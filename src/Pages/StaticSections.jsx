@@ -24,7 +24,7 @@ const StaticSections = () => {
         >
           <div className="p-6 bg-gray-50 rounded-2xl shadow hover:shadow-lg transition flex flex-col items-center">
             <Star className="text-yellow-500 w-12 h-12 mb-4" />
-            <h3 className="text-lg font-semibold mb-2">Top-Rated Professionals</h3>
+            <h3 className="text-lg font-semibold mb-2 dark:text-gray-800">Top-Rated Professionals</h3>
             <p className="text-gray-600 text-sm sm:text-base text-center">
               All our service providers are experienced and highly rated by real users.
             </p>
@@ -32,7 +32,7 @@ const StaticSections = () => {
 
           <div className="p-6 bg-gray-50 rounded-2xl shadow hover:shadow-lg transition flex flex-col items-center">
             <ShieldCheck className="text-blue-500 w-12 h-12 mb-4" />
-            <h3 className="text-lg font-semibold mb-2">Safe & Secure</h3>
+            <h3 className="text-lg font-semibold mb- dark:text-gray-800">Safe & Secure</h3>
             <p className="text-gray-600 text-sm sm:text-base text-center">
               Verified background checks to ensure safety and reliability at every step.
             </p>
@@ -40,7 +40,7 @@ const StaticSections = () => {
 
           <div className="p-6 bg-gray-50 rounded-2xl shadow hover:shadow-lg transition flex flex-col items-center">
             <ThumbsUp className="text-green-500 w-12 h-12 mb-4" />
-            <h3 className="text-lg font-semibold mb-2">Affordable Pricing</h3>
+            <h3 className="text-lg font-semibold mb-2 dark:text-gray-800">Affordable Pricing</h3>
             <p className="text-gray-600 text-sm sm:text-base text-center">
               Transparent pricing with no hidden charges or surprise costs.
             </p>
@@ -48,7 +48,7 @@ const StaticSections = () => {
 
           <div className="p-6 bg-gray-50 rounded-2xl shadow hover:shadow-lg transition flex flex-col items-center">
             <Users className="text-pink-500 w-12 h-12 mb-4" />
-            <h3 className="text-lg font-semibold mb-2">Trusted by 10K+ Users</h3>
+            <h3 className="text-lg font-semibold mb-2 dark:text-gray-800">Trusted by 10K+ Users</h3>
             <p className="text-gray-600 text-sm sm:text-base text-center">
               Our customers love our fast, reliable, and professional service experience.
             </p>

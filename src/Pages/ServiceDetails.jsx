@@ -13,8 +13,16 @@ const ServiceDetails = () => {
 
   const [openModal, setOpenModal] = useState(false);
 
+ // console.log(user, service);
+  
   const handleBooking = (e) => {
     e.preventDefault();
+
+      if(service.email === user?.email){
+      
+      toast.error("You can't book your own service!");
+      return;
+    }
 
     const form = e.target;
     const bookingData = {
@@ -26,6 +34,7 @@ const ServiceDetails = () => {
      serviceImg: service.image
     };
 
+
     fetch("https://home-hero-server-silk.vercel.app/bookings", {
       method: "POST",
       headers: { "content-type": "application/json" },
@@ -36,7 +45,9 @@ const ServiceDetails = () => {
         toast.success("Your Service Booking Successful!");
         setOpenModal(false);
       });
+ 
   };
+
   return (
     <div className="max-w-4xl bg-green-100 mx-auto p-6">
 
@@ -71,9 +82,10 @@ const ServiceDetails = () => {
           <p className="text-gray-600">Contact: {service.email}</p>
         </div>
 
-        {/* Book Button */}
+        {/* Booking Btn */}
         <button
-          onClick={() => setOpenModal(true)}
+       
+          onClick={() => setOpenModal(true) }
           className="mt-6 w-full bg-pink-500 hover:bg-pink-600 text-white py-3 rounded-xl text-lg font-semibold transition"
         >
           Book Now
@@ -82,8 +94,8 @@ const ServiceDetails = () => {
 
       {/* Modal */}
       {openModal && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center p-4">
-          <div className="bg-white w-full max-w-md p-6 rounded-2xl shadow-xl">
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center py-4 p-4">
+          <div className="bg-white dark:text-gray-900 w-full max-w-md p-6 rounded-2xl shadow-xl">
             <h2 className="text-xl font-semibold text-center mb-4 text-pink-600">
               Confirm Booking Service
             </h2>
@@ -110,7 +122,7 @@ const ServiceDetails = () => {
                 type="date"
                 name="date"
                 required
-                className="w-full px-4 py-2 border rounded"
+                className="w-full px-4 py-2 border rounded dark:text-gray-900"
               />
 
               <button className="w-full bg-green-500 hover:bg-green-600 text-white py-2 rounded">
@@ -120,7 +132,7 @@ const ServiceDetails = () => {
 
             <button
               onClick={() => setOpenModal(false)}
-              className="mt-3 w-full py-2 bg-gray-300 rounded hover:bg-gray-400"
+              className="mt-3 w-full py-2 bg-pink-400 rounded hover:bg-pink-500"
             >
               Close
             </button>

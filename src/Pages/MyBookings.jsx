@@ -7,10 +7,10 @@ const MyBookings = () => {
   const [bookings, setBookings] = useState([]);
 
   useEffect(() => {
-    fetch(`https://home-hero-server-silk.vercel.app/bookings?email=${user.email}`)
+    fetch(`https://home-hero-server-silk.vercel.app/bookings?email=${user?.email}`)
       .then((res) => res.json())
       .then((data) => setBookings(data));
-  }, [user.email]);
+  }, [user]);
 
   // delete service booking
   const handleCancel = async(id) => {
@@ -40,7 +40,6 @@ const MyBookings = () => {
                     icon: "success",
                   });
                   
-         // alert("Booking canceled!");
         }
       });
     };
@@ -58,8 +57,8 @@ const MyBookings = () => {
           You have no bookings yet.
         </p>
       ) : (
-        // Table Wrapper for Mobile scroll
-        <div className="overflow-x-auto rounded-lg shadow-lg bg-white">
+        // Table formet
+        <div className="overflow-x-auto rounded-lg shadow-lg mb-3 dark:text-gray-900 bg-white">
           <table className="w-full text-sm md:text-base">
             <thead className="bg-pink-100">
               <tr>
