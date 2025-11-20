@@ -47,7 +47,7 @@ const ForgotPassword = () => {
           Reset Password
         </h2>
         <form onSubmit={handleResetPassword}>
-          <label className="label font-semibold">Email Address</label>
+          <label className="label dark:text-gray-900 font-semibold">Email Address</label>
           <input
             type="email"
             ref={emailRef}
@@ -60,7 +60,7 @@ const ForgotPassword = () => {
           </button>
         </form>
 
-        <p className="text-sm text-center mt-3">
+        <p className="text-sm  dark:text-gray-900 text-center mt-3">
           Back to{" "}
           <Link to="/login" className="text-blue-600 font-semibold">
             Login

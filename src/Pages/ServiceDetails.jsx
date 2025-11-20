@@ -72,7 +72,7 @@ const ServiceDetails = () => {
           <p className="text-2xl font-bold text-green-600">${service.price}</p>
         </div>
 
-        <p className="text-gray-700 leading-relaxed">{service.description}</p>
+        <p className="text-gray-700 ">{service.description}</p>
 
         <div className="mt-3">
           <p className="font-semibold text-gray-800">

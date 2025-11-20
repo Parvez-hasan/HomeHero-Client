@@ -34,6 +34,21 @@ const Profile = () => {
       });
   };
 
+  const formatLocalTime = (utcString) => {
+  if (!utcString) return "N/A";
+  const date = new Date(utcString);
+  return date.toLocaleString("en-BD", {
+    hour12: true,
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+    day: "2-digit",
+    month: "short",
+    year: "numeric",
+  });
+};
+
+
   return (
     <div className="max-w-2xl mx-auto mt-5 bg-green-100 shadow-lg rounded-2xl p-6 border border-gray-100">
       <h2 className="text-2xl font-bold text-center text-pink-500 mb-6">
@@ -49,7 +64,8 @@ const Profile = () => {
         <h3 className="text-lg font-semibold dark:text-gray-900">{user?.displayName || "User"}</h3>
         <p className="text-gray-500">{user?.email}</p>
         <p className="text-sm text-gray-600">
-          Last Login: {user?.metadata?.lastSignInTime}
+          Last Login: {formatLocalTime(user?.metadata?.lastSignInTime)}
+         
         </p>
       </div>
 
