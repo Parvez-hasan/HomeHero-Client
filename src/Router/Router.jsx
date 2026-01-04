@@ -16,6 +16,7 @@ import ServiceSix from "../Pages/ServiceSix";
 import EditService from "../Pages/EditService";
 import ServiceDetails from "../Pages/ServiceDetails";
 import MyBookings from "../Pages/MyBookings";
+import About from "../Pages/About";
 
 export const router = createBrowserRouter([
     {
@@ -71,6 +72,11 @@ export const router = createBrowserRouter([
                 )
 
             },
+            {
+              path: "/about",
+              element: <About />
+            },
+
             {
                 path: "profile",
                 element: <PrivetRouter> 

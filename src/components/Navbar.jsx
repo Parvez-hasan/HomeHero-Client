@@ -76,6 +76,14 @@ const Navbar = () => {
           <li>
             <NavLink
               className="hover:text-pink-500 hover:font-bold"
+              to="/about"
+            >
+              About Us
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              className="hover:text-pink-500 hover:font-bold"
               to="/profile"
             >
               Profile
