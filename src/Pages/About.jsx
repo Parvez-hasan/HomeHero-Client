@@ -50,7 +50,7 @@ const About = () => {
           viewport={{ once: true }}
         >
           <img
-            src="https://i.ibb.co/Jj3xQvS/home-service.jpg"
+            src="https://i.ibb.co.com/PGcrR3kD/ru-service-provider.png"
             alt="Home Service"
             className="rounded-2xl shadow-lg w-full object-cover"
           />
