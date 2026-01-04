@@ -233,7 +233,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="w-full sticky top-0 z-50 bg-primary text-white">
+    <div className="navbar bg-green-100 dark:bg-gray-800 shadow-sm px-2 w-full sticky top-0 z-50 ">
       <div className="navbar max-w-7xl mx-auto px-4">
         {/* Left */}
         <div className="navbar-start">
@@ -243,7 +243,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 text-black rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
             >
               {navLinks}
             </ul>
@@ -279,7 +279,7 @@ const Navbar = () => {
               </label>
               <ul
                 tabIndex={0}
-                className="menu dropdown-content mt-3 p-2 shadow bg-base-100 text-black rounded-box w-44"
+                className="menu dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-44"
               >
                 <li><NavLink to="/profile">Profile</NavLink></li>
                 <li><NavLink to="/dashboard">Dashboard</NavLink></li>

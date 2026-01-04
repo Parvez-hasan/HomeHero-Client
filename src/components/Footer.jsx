@@ -1,5 +1,5 @@
 import React from "react";
-import { FaFacebook, FaLinkedin, FaPhone } from "react-icons/fa";
+import { FaFacebook, FaGithub, FaLinkedin, FaPhone } from "react-icons/fa";
 import { IoIosMail } from "react-icons/io";
 import { FaLocationDot, FaXTwitter } from "react-icons/fa6";
 import logoimg from "..//assets/rero-removebg-preview (1).png";
@@ -71,11 +71,21 @@ const Footer = () => {
 
         <nav>
           <h6 className="text-xl dark:text-gray-100 text-gray-700">Social Links</h6>
-          {/* twitter  */}
+
+          {/* github  */}
           <div className="flex gap-5 py-2">
-            <span>
-              <FaXTwitter className=" text-black dark:text-gray-100 rounded-full" />
-            </span>
+             <a href="https://github.com/Parvez-hasan" target="_blank">
+                <span>
+                < FaGithub className="dark:text-gray-100 text-black rounded-full" />
+               </span>
+             </a>
+              {/* twtter */}
+             <a href="https://x.com/parvezhasan" target="_blank">
+                <span>
+                <FaXTwitter className=" text-black dark:text-gray-100 rounded-full" />
+               </span>
+             </a>
+             
                {/* linkedin */}
              <a href="https://www.linkedin.com/in/md-parvez-583031305/" target="_blank">
                 <span>
