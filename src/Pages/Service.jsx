@@ -1,30 +1,52 @@
 
-import React, { useContext, useState } from "react";
+
+
+import React, { useContext, useState, useEffect } from "react";
 import { Link, useLoaderData } from "react-router";
 import { motion } from "framer-motion";
 import { AuthContext } from "../Context/AuthContext";
 import toast from "react-hot-toast";
+import ServiceSkeleton from "./ServiceSkeleton";
 
 const Service = () => {
   const { loading } = useContext(AuthContext);
-  const data = useLoaderData();
+  const initialData = useLoaderData();
 
-  const [services, setServices] = useState(data);
+  const [services, setServices] = useState(initialData);
   const [min, setMin] = useState("");
   const [max, setMax] = useState("");
+  const [search, setSearch] = useState("");
+  const [sort, setSort] = useState(""); // "price-asc", "price-desc", "rating-desc"
+
+  // Filter + search + sort handler
+  const fetchServices = () => {
+    const params = new URLSearchParams();
+    if (min) params.append("min", min);
+    if (max) params.append("max", max);
+    if (search) params.append("search", search);
+    if (sort) params.append("sort", sort);
+
+    fetch(`https://home-hero-server-silk.vercel.app/services?${params}`)
+      .then((res) => res.json())
+      .then((data) => setServices(data))
+      .catch((err) => toast.error("Failed to fetch services"));
+  };
 
   const handleFilter = () => {
     if (!min || !max) {
       toast.error("Enter both Min & Max price");
       return;
     }
-
-    fetch(
-      `https://home-hero-server-silk.vercel.app/services?min=${min}&max=${max}`
-    )
-      .then(res => res.json())
-      .then(data => setServices(data));
+    fetchServices();
   };
+
+  // Auto fetch on search or sort change
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      fetchServices();
+    }, 500); // debounce search 0.5s
+    return () => clearTimeout(timer);
+  }, [search, sort]);
 
   return (
     <section className="py-12 px-4 max-w-7xl mx-auto">
@@ -38,21 +60,28 @@ const Service = () => {
         </p>
       </div>
 
-      {/* Filter */}
-      <div className="flex flex-col sm:flex-row gap-4 justify-center mb-10">
+      {/* Search + Filter + Sort */}
+      <div className="flex flex-col md:flex-row gap-4 justify-center mb-10 flex-wrap">
+        <input
+          type="text"
+          placeholder="Search by name..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="input input-bordered w-full md:w-60"
+        />
         <input
           type="number"
           placeholder="Min Price"
           value={min}
           onChange={(e) => setMin(e.target.value)}
-          className="input input-bordered w-full sm:w-40"
+          className="input input-bordered w-full md:w-40"
         />
         <input
           type="number"
           placeholder="Max Price"
           value={max}
           onChange={(e) => setMax(e.target.value)}
-          className="input input-bordered w-full sm:w-40"
+          className="input input-bordered w-full md:w-40"
         />
         <button
           onClick={handleFilter}
@@ -60,15 +89,24 @@ const Service = () => {
         >
           Apply Filter
         </button>
+
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+          className="input input-bordered w-full md:w-48"
+        >
+          <option value="">Sort By</option>
+          <option value="price-asc">Price Low → High</option>
+          <option value="price-desc">Price High → Low</option>
+          <option value="rating-desc">Rating High → Low</option>
+        </select>
       </div>
 
       {/* Cards */}
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {loading
-          ? Array.from({ length: 8 }).map((_, i) => (
-              <ServiceSkeleton key={i} />
-            ))
-          : services.map(service => (
+          ? Array.from({ length: 8 }).map((_, i) => <ServiceSkeleton key={i} />)
+          : services.map((service) => (
               <motion.div
                 key={service._id}
                 whileHover={{ y: -6 }}
@@ -93,15 +131,13 @@ const Service = () => {
 
                   {/* Meta */}
                   <div className="text-sm text-gray-600 dark:text-gray-400 mt-3 space-y-1">
-                     <div className="flex justify-between">
-                        <p>📍 {service.location || "Dhaka"}</p>
-                        <p>⭐ {service.rating || 4.8}</p>
-                     </div>
+                    <div className="flex justify-between">
+                      <p>📍 {service.location || "Dhaka"}</p>
+                      <p>⭐ {service.rating || 4.8}</p>
+                    </div>
                     <p>
                       Status:{" "}
-                      <span className="text-green-600 font-medium">
-                        Available
-                      </span>
+                      <span className="text-green-600 font-medium">Available</span>
                     </p>
                   </div>
 

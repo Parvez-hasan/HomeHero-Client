@@ -104,7 +104,7 @@ const Footer = () => {
       </div>
       <hr className="p-0.5 w-10/12 mx-auto bg-gray-600" />
       <p className="text-center dark:text-gray-100 text-gray-700 py-4 px-3">
-        Copyright © 2025 home service - All right reserved
+        Copyright © 2026 home service - All right reserved
       </p>
     </footer>
   );

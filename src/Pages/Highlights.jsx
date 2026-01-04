@@ -2,7 +2,7 @@ import React from "react";
 
 const Highlights = () => {
   return (
-    <section className="py-12 border-gray-400">
+    <section className="py-10 bg-gray-200 dark:bg-gray-800">
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-6 text-center">
         <div>
           <h3 className="text-4xl font-bold">500+</h3>

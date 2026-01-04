@@ -19,8 +19,9 @@ const HomeLayout = () => {
             <Highlights></Highlights>
           
             <StaticSections></StaticSections>
-            <FAQ></FAQ>
+           
             <CTA></CTA>
+             <FAQ></FAQ>
             <Newsletter></Newsletter>
            
         </div>
